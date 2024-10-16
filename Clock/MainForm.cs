@@ -25,27 +25,32 @@ namespace Clock
             {
                 labelTime.Text += $"\n{DateTime.Today.ToString("yyyy.MM.dd")}";
             }
+            notifyIconSystemTray.Text = labelTime.Text;
         }
-
+        private void SetVisibility(bool visible) 
+        {
+            this.TransparencyKey = visible ? Color.Empty : this.BackColor;
+            this.FormBorderStyle = visible ? FormBorderStyle.Sizable : FormBorderStyle.None;
+            this.ShowInTaskbar = visible;
+            cbShowDate.Visible = visible;
+            btnHideControls.Visible = visible;
+            labelTime.BackColor = visible ?  Color.Empty : Color.Coral;
+        }
         private void btnHideControls_Click(object sender, EventArgs e)
         {
-            this.TransparencyKey = this.BackColor;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.ShowInTaskbar = false;
-            cbShowDate.Visible = false;
-            btnHideControls.Visible = false;
-            labelTime.BackColor = Color.Coral;
-            //C:\Users\Pro>taskkill /f /im clock.exe (грохнуть любой процесс)
+            SetVisibility(false);
+            notifyIconSystemTray.ShowBalloonTip(3, "Важная информация", "Чтобы время поменять нужно кнопочку нажать", ToolTipIcon.Warning);
         }
+            //C:\Users\Pro>taskkill /f /im clock.exe (грохнуть любой процесс)
 
         private void labelTime_Click(object sender, EventArgs e)
         {
-            this.TransparencyKey = Color.Empty;
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.ShowInTaskbar = true;
-            cbShowDate.Visible = true;
-            btnHideControls.Visible = true;
-            labelTime.BackColor = Color.Coral;
+            SetVisibility(true);
+        }
+
+        private void notifyIconSystemTray_MouseMove(object sender, MouseEventArgs e)
+        {
+            notifyIconSystemTray.Text = "Current time:\n" + labelTime.Text;
         }
     }
 }
