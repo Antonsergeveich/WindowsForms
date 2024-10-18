@@ -16,6 +16,13 @@ namespace Clock
         {
             InitializeComponent();
             this.TransparencyKey = Color.Empty;
+            SetVisibility(false);
+            this.Location = new Point
+                (
+                System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width - this.Width,
+                50
+                );
+            this.Text += $"Location: {this.Location.X}x{this.Location.Y}";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -38,7 +45,8 @@ namespace Clock
         }
         private void btnHideControls_Click(object sender, EventArgs e)
         {
-            SetVisibility(false);
+            //SetVisibility(false);
+            showControlsToolStripMenuItem.Checked = false;
             notifyIconSystemTray.ShowBalloonTip(3, "Важная информация", "Чтобы время поменять нужно кнопочку нажать", ToolTipIcon.Warning);
         }
             //C:\Users\Pro>taskkill /f /im clock.exe (грохнуть любой процесс)
@@ -51,6 +59,41 @@ namespace Clock
         private void notifyIconSystemTray_MouseMove(object sender, MouseEventArgs e)
         {
             notifyIconSystemTray.Text = "Current time:\n" + labelTime.Text;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fontsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showDateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void topmostToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = topmostToolStripMenuItem.Checked;
+        }
+
+        private void showControlsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            SetVisibility(((ToolStripMenuItem)sender).Checked);
+        }
+
+        private void showDateToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            cbShowDate.Checked = ((ToolStripMenuItem)sender).Checked;
+        }
+
+        private void cbShowDate_CheckedChanged(object sender, EventArgs e)
+        {
+            showDateToolStripMenuItem.Checked = ((CheckBox)sender).Checked;
         }
     }
 }
