@@ -81,7 +81,7 @@
             this.toolStripSeparator3,
             this.showDateToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 204);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 182);
             // 
             // topmostToolStripMenuItem
             // 
@@ -191,6 +191,7 @@
             // btnHideControls
             // 
             this.btnHideControls.Font = new System.Drawing.Font("Algerian", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHideControls.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnHideControls.Location = new System.Drawing.Point(33, 264);
             this.btnHideControls.Name = "btnHideControls";
             this.btnHideControls.Size = new System.Drawing.Size(225, 86);
@@ -211,16 +212,15 @@
             // 
             // fontDialog
             // 
-            this.fontDialog.Font = new System.Drawing.Font("Jokerman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fontDialog.Font = new System.Drawing.Font("Algerian", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(377, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
             // 
             // MainForm
             // 
