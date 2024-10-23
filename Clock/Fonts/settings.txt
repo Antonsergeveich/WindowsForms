@@ -1,3 +1,5 @@
 -16744193
 -16711872
-Perpetua Titling MT
+DS-DIGI.TTF
+True
+True

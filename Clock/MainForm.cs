@@ -19,6 +19,7 @@ namespace Clock
         ColorDialog backgroundColorDialog;
         ColorDialog foregroundColorDialog;
         ChooseFont chooseFontDialog;
+        string FontFile {  get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -26,9 +27,9 @@ namespace Clock
             this.TransparencyKey = Color.Empty;
             backgroundColorDialog = new ColorDialog();
             foregroundColorDialog = new ColorDialog();
-            LoadSettings();
 
             chooseFontDialog = new ChooseFont();
+            LoadSettings();
 
             //backgroundColorDialog.Color = Color.Green;
             //foregroundColorDialog.Color = Color.LimeGreen;
@@ -58,9 +59,13 @@ namespace Clock
             {
             settings.Add( sr.ReadLine());
             }
+            sr.Close();
             backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(settings.ToArray()[0]));
             foregroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(settings.ToArray()[1]));
-            sr.Close();
+            FontFile = settings.ToArray()[2];
+            topmostToolStripMenuItem.Checked = bool.Parse(settings.ToArray()[3]);
+            showDateToolStripMenuItem.Checked = bool.Parse(settings.ToArray()[4]);
+            labelTime.Font = chooseFontDialog.SetFontFile( FontFile );
             labelTime.ForeColor = foregroundColorDialog.Color;
             labelTime.BackColor = backgroundColorDialog.Color;
         }
@@ -69,7 +74,9 @@ namespace Clock
             StreamWriter sw = new StreamWriter("settings.txt");
             sw.WriteLine(backgroundColorDialog.Color.ToArgb()); //ToArgb() возвращает числовой код цвета
             sw.WriteLine(foregroundColorDialog.Color.ToArgb());
-            sw.WriteLine(labelTime.Font.Name);
+            sw.WriteLine(chooseFontDialog.FontFile.Split('\\').Last());
+            sw.WriteLine(topmostToolStripMenuItem.Checked);
+            sw.WriteLine(showDateToolStripMenuItem.Checked);
             sw.Close();
             Process.Start("notepad", "settings.txt");
         }
