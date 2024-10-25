@@ -31,10 +31,6 @@ namespace Clock
             chooseFontDialog = new ChooseFont();
             LoadSettings();
 
-            //backgroundColorDialog.Color = Color.Green;
-            //foregroundColorDialog.Color = Color.LimeGreen;
-            //labelTime.ForeColor = foregroundColorDialog.Color;
-            //labelTime.BackColor = backgroundColorDialog.Color;
             SetVisibility(false);
             this.Location = new Point
                 (
