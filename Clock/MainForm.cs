@@ -118,11 +118,6 @@ namespace Clock
             notifyIconSystemTray.Text = "Current time:\n" + labelTime.Text;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void fontsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(chooseFontDialog.ShowDialog(this)==DialogResult.OK)
