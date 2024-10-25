@@ -35,7 +35,7 @@ namespace Clock
             this.Location = new Point
                 (
                 System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width - this.Width,
-                50
+               0
                 );
             this.Text += $"Location: {this.Location.X}x{this.Location.Y}";
         }
