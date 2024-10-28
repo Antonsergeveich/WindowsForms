@@ -51,6 +51,8 @@
             this.notifyIconSystemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.label1 = new System.Windows.Forms.Label();
+            this.alarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,11 +79,13 @@
             this.colorsToolStripMenuItem,
             this.fontsToolStripMenuItem,
             this.toolStripSeparator2,
-            this.loadOnWindowsStartupToolStripMenuItem,
+            this.alarmsToolStripMenuItem,
             this.toolStripSeparator3,
+            this.loadOnWindowsStartupToolStripMenuItem,
+            this.toolStripSeparator4,
             this.showDateToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 204);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 232);
             // 
             // topmostToolStripMenuItem
             // 
@@ -224,6 +228,18 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 3;
             // 
+            // alarmsToolStripMenuItem
+            // 
+            this.alarmsToolStripMenuItem.Name = "alarmsToolStripMenuItem";
+            this.alarmsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.alarmsToolStripMenuItem.Text = "Alarms";
+            this.alarmsToolStripMenuItem.Click += new System.EventHandler(this.alarmsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(206, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +287,8 @@
         private System.Windows.Forms.ToolStripMenuItem colorFontsToolStripMenuItem;
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem alarmsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

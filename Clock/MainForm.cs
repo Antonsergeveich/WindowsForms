@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Diagnostics;
 using Microsoft.Win32;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Runtime.InteropServices;
 
 namespace Clock
 {
@@ -20,10 +21,12 @@ namespace Clock
         ColorDialog backgroundColorDialog;
         ColorDialog foregroundColorDialog;
         ChooseFont chooseFontDialog;
+        AlarmList alarmList;
         string FontFile {  get; set; }
         public MainForm()
         {
             InitializeComponent();
+            AllocConsole();
             SetFontDirectory();
             this.TransparencyKey = Color.Empty;
             backgroundColorDialog = new ColorDialog();
@@ -31,7 +34,7 @@ namespace Clock
 
             chooseFontDialog = new ChooseFont();
             LoadSettings();
-
+            alarmList = new AlarmList();
             SetVisibility(false);
             this.Location = new Point
                 (
@@ -192,5 +195,12 @@ namespace Clock
             else rk.DeleteValue("Clock",false);//false - Не бросать исключения если указанная запись отсутствует
             rk.Dispose(); //Освобождает ресурсы занятые объектом
         }
+
+        private void alarmsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            alarmList.ShowDialog(this);
+        }
+        [DllImport("kernel32.dll")]
+        static extern bool AllocConsole();
     }
 }
