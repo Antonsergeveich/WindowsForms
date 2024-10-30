@@ -74,6 +74,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\Icon.ico" />
+    <None Include="Resources\Icon1.ico" />
     <EmbeddedResource Include="AddAlarm.resx">
       <DependentUpon>AddAlarm.cs</DependentUpon>
     </EmbeddedResource>

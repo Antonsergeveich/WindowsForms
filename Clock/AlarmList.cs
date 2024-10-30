@@ -24,10 +24,20 @@ namespace Clock
 
         private void buttonAddAlarm_Click(object sender, EventArgs e)
         {
-            AddAlarm addAlarm = new AddAlarm(); 
-            if(addAlarm.ShowDialog(this) == DialogResult.OK)
+            AddAlarm addAlarm = new AddAlarm();
+            if (addAlarm.ShowDialog(this) == DialogResult.OK)
             {
                 listBoxAlarms.Items.Add(addAlarm.Alarm);
+            }
+        }
+
+        private void listBoxAlarms_DoubleClick(object sender, EventArgs e)
+        {
+            AddAlarm addAlarm = new AddAlarm((sender as ListBox).SelectedItem as Alarm);
+            if (addAlarm.ShowDialog(this) == DialogResult.OK)
+            {
+                listBoxAlarms.SelectedItem = addAlarm.Alarm;
+                listBoxAlarms.Items[listBoxAlarms.SelectedIndex] = listBoxAlarms.Items[listBoxAlarms.SelectedIndex];
             }
         }
     }
