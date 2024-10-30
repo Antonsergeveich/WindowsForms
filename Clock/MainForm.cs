@@ -22,7 +22,8 @@ namespace Clock
         ColorDialog foregroundColorDialog;
         ChooseFont chooseFontDialog;
         AlarmList alarmList;
-        string FontFile {  get; set; }
+        Alarm alarm;
+        string FontFile { get; set; }
         public MainForm()
         {
             InitializeComponent();
@@ -42,11 +43,13 @@ namespace Clock
                0
                 );
             this.Text += $"Location: {this.Location.X}x{this.Location.Y}";
+            alarm = new Alarm();
+            GetNextAlarm();
         }
         void SetFontDirectory()
         {
             string location = Assembly.GetEntryAssembly().Location; //Получаем полный фдрес исполняемого файла
-            string path = Path.GetDirectoryName( location );        //Из адреса извлекаем путь к файлу
+            string path = Path.GetDirectoryName(location);        //Из адреса извлекаем путь к файлу
             //MessageBox.Show(Directory.GetCurrentDirectory());
             Directory.SetCurrentDirectory($"{path}\\..\\..\\Fonts");//Переходим в каталог со шрифтами
             //MessageBox.Show(Directory.GetCurrentDirectory());
@@ -55,9 +58,9 @@ namespace Clock
         {
             StreamReader sr = new StreamReader("settings.txt");
             List<string> settings = new List<string>();
-            while(!sr.EndOfStream)
+            while (!sr.EndOfStream)
             {
-            settings.Add( sr.ReadLine());
+                settings.Add(sr.ReadLine());
             }
             sr.Close();
             backgroundColorDialog.Color = Color.FromArgb(Convert.ToInt32(settings.ToArray()[0]));
@@ -65,7 +68,7 @@ namespace Clock
             FontFile = settings.ToArray()[2];
             topmostToolStripMenuItem.Checked = bool.Parse(settings.ToArray()[3]);
             showDateToolStripMenuItem.Checked = bool.Parse(settings.ToArray()[4]);
-            labelTime.Font = chooseFontDialog.SetFontFile( FontFile );
+            labelTime.Font = chooseFontDialog.SetFontFile(FontFile);
             labelTime.ForeColor = foregroundColorDialog.Color;
             labelTime.BackColor = backgroundColorDialog.Color;
 
@@ -85,6 +88,19 @@ namespace Clock
             sw.Close();
             Process.Start("notepad", "settings.txt");
         }
+        void GetNextAlarm()
+        {
+            //if (alarmList.ListBoxAlarms != null)
+
+            List<Alarm> alarms = new List<Alarm>();
+            foreach (Alarm item in alarmList.ListBoxAlarms.Items)
+            {
+                alarms.Add(item);
+            }
+            if(alarms.Min() != null)alarm = alarms.Min();
+            Console.WriteLine(alarm);
+
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -93,7 +109,16 @@ namespace Clock
             {
                 labelTime.Text += $"\n{DateTime.Today.ToString("yyyy.MM.dd")}";
             }
-            notifyIconSystemTray.Text = labelTime.Text;
+            //notifyIconSystemTray.Text = labelTime.Text;
+            GetNextAlarm();
+            if (
+                DateTime.Now.Hour == alarm.Time.Hour &&
+                DateTime.Now.Minute == alarm.Time.Minute &&
+                DateTime.Now.Second == alarm.Time.Second
+                )
+            {
+                MessageBox.Show(alarm.Filename, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void SetVisibility(bool visible)
         {
@@ -125,7 +150,7 @@ namespace Clock
 
         private void fontsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(chooseFontDialog.ShowDialog(this)==DialogResult.OK)
+            if (chooseFontDialog.ShowDialog(this) == DialogResult.OK)
             {
                 labelTime.Font = chooseFontDialog.ChosenFont;
             }
@@ -188,11 +213,11 @@ namespace Clock
 
         private void loadOnWindowsStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            RegistryKey rk = 
+            RegistryKey rk =
                 Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true); //true - Writable(записываемый)
-            if(loadOnWindowsStartupToolStripMenuItem.Checked)
+            if (loadOnWindowsStartupToolStripMenuItem.Checked)
                 rk.SetValue("Clock", Application.ExecutablePath);
-            else rk.DeleteValue("Clock",false);//false - Не бросать исключения если указанная запись отсутствует
+            else rk.DeleteValue("Clock", false);//false - Не бросать исключения если указанная запись отсутствует
             rk.Dispose(); //Освобождает ресурсы занятые объектом
         }
 
