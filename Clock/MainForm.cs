@@ -90,16 +90,15 @@ namespace Clock
         }
         void GetNextAlarm()
         {
-            //if (alarmList.ListBoxAlarms != null)
-
             List<Alarm> alarms = new List<Alarm>();
             foreach (Alarm item in alarmList.ListBoxAlarms.Items)
             {
-                alarms.Add(item);
+                if(item.Time > DateTime.Now)
+                    alarms.Add(item);
             }
-            if(alarms.Min() != null)alarm = alarms.Min();
+            if(alarms.Min() != null)
+                alarm = alarms.Min();
             Console.WriteLine(alarm);
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -109,16 +108,25 @@ namespace Clock
             {
                 labelTime.Text += $"\n{DateTime.Today.ToString("yyyy.MM.dd")}";
             }
+            if(showWeekdayToolStripMenuItem.Checked)
+            {
+                labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+            }
             //notifyIconSystemTray.Text = labelTime.Text;
-            GetNextAlarm();
+            //int weekday = (int)DateTime.Now.DayOfWeek;
+            //weekday = weekday == 0 ? 7 : weekday - 1;
             if (
+                alarm.Weekdays[(DateTime.Now.DayOfWeek - 1 < 0 ? 6 : (int)DateTime.Now.DayOfWeek - 1)] == true &&
+                //alarm.Weekdays[weekday] == true &&
                 DateTime.Now.Hour == alarm.Time.Hour &&
                 DateTime.Now.Minute == alarm.Time.Minute &&
                 DateTime.Now.Second == alarm.Time.Second
                 )
             {
                 MessageBox.Show(alarm.Filename, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Console.WriteLine("ALARM:------" + alarm.ToString());
             }
+            GetNextAlarm();
         }
         private void SetVisibility(bool visible)
         {
