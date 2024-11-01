@@ -54,7 +54,9 @@
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.showWeekdayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTime
@@ -87,7 +89,7 @@
             this.toolStripSeparator4,
             this.showDateToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 254);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 232);
             // 
             // topmostToolStripMenuItem
             // 
@@ -200,7 +202,7 @@
             // 
             this.cbShowDate.AutoSize = true;
             this.cbShowDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbShowDate.Location = new System.Drawing.Point(23, 187);
+            this.cbShowDate.Location = new System.Drawing.Point(23, 97);
             this.cbShowDate.Name = "cbShowDate";
             this.cbShowDate.Size = new System.Drawing.Size(246, 40);
             this.cbShowDate.TabIndex = 1;
@@ -212,7 +214,7 @@
             // 
             this.btnHideControls.Font = new System.Drawing.Font("Algerian", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHideControls.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnHideControls.Location = new System.Drawing.Point(33, 264);
+            this.btnHideControls.Location = new System.Drawing.Point(23, 183);
             this.btnHideControls.Name = "btnHideControls";
             this.btnHideControls.Size = new System.Drawing.Size(225, 86);
             this.btnHideControls.TabIndex = 2;
@@ -249,12 +251,22 @@
             this.showWeekdayToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showWeekdayToolStripMenuItem.Text = "Show weekday";
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(32, 321);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(216, 42);
+            this.axWindowsMediaPlayer1.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 422);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnHideControls);
             this.Controls.Add(this.cbShowDate);
@@ -268,6 +280,7 @@
             this.TransparencyKey = System.Drawing.Color.White;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,6 +312,7 @@
         private System.Windows.Forms.ToolStripMenuItem alarmsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem showWeekdayToolStripMenuItem;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 

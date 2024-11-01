@@ -14,6 +14,7 @@ using Microsoft.Win32;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Runtime.InteropServices;
 
+
 namespace Clock
 {
     public partial class MainForm : Form
@@ -43,8 +44,11 @@ namespace Clock
                0
                 );
             this.Text += $"Location: {this.Location.X}x{this.Location.Y}";
+
             alarm = new Alarm();
             GetNextAlarm();
+
+            this.axWindowsMediaPlayer1.Visible = false;
         }
         void SetFontDirectory()
         {
@@ -93,10 +97,10 @@ namespace Clock
             List<Alarm> alarms = new List<Alarm>();
             foreach (Alarm item in alarmList.ListBoxAlarms.Items)
             {
-                if(item.Time > DateTime.Now)
+                if (item.Time > DateTime.Now)
                     alarms.Add(item);
             }
-            if(alarms.Min() != null)
+            if (alarms.Min() != null)
                 alarm = alarms.Min();
             Console.WriteLine(alarm);
         }
@@ -108,7 +112,7 @@ namespace Clock
             {
                 labelTime.Text += $"\n{DateTime.Today.ToString("yyyy.MM.dd")}";
             }
-            if(showWeekdayToolStripMenuItem.Checked)
+            if (showWeekdayToolStripMenuItem.Checked)
             {
                 labelTime.Text += $"\n{DateTime.Now.DayOfWeek}";
             }
@@ -125,8 +129,21 @@ namespace Clock
             {
                 MessageBox.Show(alarm.Filename, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("ALARM:------" + alarm.ToString());
+                PlayAlarm();
+                GetNextAlarm();
             }
-            GetNextAlarm();
+            if(DateTime.Now.Minute == 0)
+            {
+                GetNextAlarm();
+                Console.WriteLine("Minute");
+            }
+        }
+        void PlayAlarm()
+        {
+            axWindowsMediaPlayer1.URL = alarm.Filename;
+            axWindowsMediaPlayer1.settings.volume = 100;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+            axWindowsMediaPlayer1.Visible = true;
         }
         private void SetVisibility(bool visible)
         {
@@ -232,6 +249,7 @@ namespace Clock
         private void alarmsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             alarmList.ShowDialog(this);
+            GetNextAlarm();
         }
         [DllImport("kernel32.dll")]
         static extern bool AllocConsole();
