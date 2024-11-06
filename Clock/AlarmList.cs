@@ -22,11 +22,6 @@ namespace Clock
             InitializeComponent();
         }
 
-        private void AlarmList_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAddAlarm_Click(object sender, EventArgs e)
         {
             AddAlarm addAlarm = new AddAlarm();

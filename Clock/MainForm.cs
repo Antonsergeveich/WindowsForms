@@ -251,6 +251,10 @@ namespace Clock
             alarmList.ShowDialog(this);
             GetNextAlarm();
         }
+        void SetPlayerInvisible(object sender, AxWMPLib._WMPOCXEvents_EndOfStreamEvent e)
+        {
+            axWindowsMediaPlayer1.Visible = false;
+        }
         [DllImport("kernel32.dll")]
         static extern bool AllocConsole();
     }

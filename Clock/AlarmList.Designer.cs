@@ -73,7 +73,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AlarmList";
             this.Text = "AlarmList";
-            this.Load += new System.EventHandler(this.AlarmList_Load);
             this.ResumeLayout(false);
 
         }
