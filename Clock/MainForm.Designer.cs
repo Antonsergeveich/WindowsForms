@@ -36,6 +36,7 @@
             this.showControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.showDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showWeekdayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,6 @@
             this.notifyIconSystemTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.label1 = new System.Windows.Forms.Label();
-            this.showWeekdayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
@@ -119,6 +119,13 @@
             this.showDateToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showDateToolStripMenuItem.Text = "Show date";
             this.showDateToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showDateToolStripMenuItem_CheckedChanged);
+            // 
+            // showWeekdayToolStripMenuItem
+            // 
+            this.showWeekdayToolStripMenuItem.CheckOnClick = true;
+            this.showWeekdayToolStripMenuItem.Name = "showWeekdayToolStripMenuItem";
+            this.showWeekdayToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showWeekdayToolStripMenuItem.Text = "Show weekday";
             // 
             // toolStripSeparator5
             // 
@@ -243,13 +250,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 3;
-            // 
-            // showWeekdayToolStripMenuItem
-            // 
-            this.showWeekdayToolStripMenuItem.CheckOnClick = true;
-            this.showWeekdayToolStripMenuItem.Name = "showWeekdayToolStripMenuItem";
-            this.showWeekdayToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.showWeekdayToolStripMenuItem.Text = "Show weekday";
             // 
             // axWindowsMediaPlayer1
             // 

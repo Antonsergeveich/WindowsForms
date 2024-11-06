@@ -69,5 +69,10 @@ namespace Clock
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void buttonDeleteAlarm_Click(object sender, EventArgs e)
+        {
+            listBoxAlarms.Items.Remove(listBoxAlarms.SelectedItem);
+        }
     }
 }
