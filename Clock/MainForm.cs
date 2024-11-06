@@ -257,6 +257,11 @@ namespace Clock
         {
             axWindowsMediaPlayer1.Visible = false;
         }
+        void SetPlayerInvisible(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
+            axWindowsMediaPlayer1.Visible = false;
+        }
         [DllImport("kernel32.dll")]
         static extern bool AllocConsole();
     }
