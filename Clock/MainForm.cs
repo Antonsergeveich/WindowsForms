@@ -131,7 +131,7 @@ namespace Clock
                 DateTime.Now.Second == alarm.Time.Second
                 )
             {
-                MessageBox.Show(alarm.Filename, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(alarm.Filename, "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("ALARM:------" + alarm.ToString());
                 PlayAlarm();
                 GetNextAlarm();
