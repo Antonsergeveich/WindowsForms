@@ -99,7 +99,7 @@ namespace Clock
             List<Alarm> alarms = new List<Alarm>();
             foreach (Alarm item in alarmList.ListBoxAlarms.Items)
             {
-                if (item.Time > DateTime.Now)
+                if (item.Time.TimeOfDay > DateTime.Now.TimeOfDay)
                     alarms.Add(item);
             }
             if (alarms.Min() != null)
@@ -143,30 +143,11 @@ namespace Clock
         }
         void PlayAlarm()
         {
-            //try
-            //{
-            //string filename = File.Exists(alarm.Filename) ? alarm.Filename : "..\\Sound\\people.mp3";
-            axWindowsMediaPlayer1.URL = alarm.Filename;//File.Exists(alarm.Filename) ? alarm.Filename : DEFAULT_ALARM_FILENAME;
-                //File.Exists(alarm.Filename) ? alarm.Filename : "..\\Sound\\people.mp3";
-
-            if(!File.Exists(alarm.Filename))
-            {
-                Console.WriteLine("Error: File not found");
-                axWindowsMediaPlayer1.URL = "..\\Sound\\people.mp3";
-            }
+                axWindowsMediaPlayer1.URL =alarm.Filename;
                 axWindowsMediaPlayer1.settings.volume = 100;
                 axWindowsMediaPlayer1.Ctlcontrols.play();
                 axWindowsMediaPlayer1.Visible = true;
                 Console.WriteLine($"PlayAlarm:\t{Directory.GetCurrentDirectory()}");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Alarm file not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    axWindowsMediaPlayer1.URL = alarm.Filename = "Sound\\people.mp3";
-            //    axWindowsMediaPlayer1.settings.volume = 100;
-            //    axWindowsMediaPlayer1.Visible = true;
-            //    axWindowsMediaPlayer1.Ctlcontrols.play();
-            //}
         }
         private void SetVisibility(bool visible)
         {
