@@ -25,7 +25,7 @@ namespace Clock
         AlarmList alarmList;
         Alarm alarm;
 
-        static string DEFAULT_ALARM_SOUND = "..\\Sound\\people.mp3";
+        static string DEFAULT_ALARM_SOUND = "..\\Sound\\Tornado_Of_Souls.mp3";
         string FontFile { get; set; }
             
         public MainForm()
