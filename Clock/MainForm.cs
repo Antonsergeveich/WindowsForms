@@ -27,6 +27,7 @@ namespace Clock
 
         //readonly string 
         string FontFile { get; set; }
+            
         public MainForm()
         {
             InitializeComponent();
@@ -143,7 +144,10 @@ namespace Clock
         }
         void PlayAlarm()
         {
-                axWindowsMediaPlayer1.URL =alarm.Filename;
+                axWindowsMediaPlayer1.URL =
+                File.Exists(alarm.Filename) ? 
+                alarm.Filename:
+                Path.GetFullPath("..\\Sound\\people.mp3");
                 axWindowsMediaPlayer1.settings.volume = 100;
                 axWindowsMediaPlayer1.Ctlcontrols.play();
                 axWindowsMediaPlayer1.Visible = true;
